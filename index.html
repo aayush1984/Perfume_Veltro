@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111321">
+  <meta name="description" content="Meet VELTRO — eau de parfum for a bolder you. Find the fragrance that feels like you.">
+  <title>VELTRO — For a bolder you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #111321;
+      --ink: #f5eff7;
+      --muted: #b1a9bd;
+      --green: #805a9c;
+      --green-light: #29243a;
+      --gold: #e0c08d;
+      --line: rgba(235, 224, 244, .14);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { --pointer-x: 50%; --pointer-y: 25%; margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    body::before { position: fixed; z-index: -2; inset: -25%; background: radial-gradient(ellipse at var(--pointer-x) var(--pointer-y), rgba(117, 75, 146, .22), transparent 35%), radial-gradient(ellipse at 82% 18%, rgba(44, 93, 133, .24), transparent 36%), radial-gradient(ellipse at 21% 78%, rgba(118, 64, 103, .19), transparent 33%), linear-gradient(135deg, #111321, #141526 45%, #101921); content: ""; animation: aurora-drift 18s ease-in-out infinite alternate; pointer-events: none; }
+    body::after { position: fixed; z-index: -1; inset: 0; background-image: radial-gradient(rgba(244, 228, 255, .42) .7px, transparent .8px), radial-gradient(rgba(219, 202, 251, .2) .6px, transparent .8px); background-position: 0 0, 34px 57px; background-size: 97px 97px, 131px 131px; content: ""; opacity: .18; pointer-events: none; }
+    @keyframes aurora-drift { 0% { transform: translate3d(-1.5%, -1%, 0) scale(1); } 100% { transform: translate3d(1.5%, 1%, 0) scale(1.06); } }
+    @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-12px) rotate(-1deg); } }
+    @keyframes float-high { 0%, 100% { transform: translateY(0) rotate(5deg); } 50% { transform: translateY(-17px) rotate(2deg); } }
+    @keyframes pulse-glow { 0%, 100% { opacity: .35; transform: scale(.94); } 50% { opacity: .8; transform: scale(1.08); } }
+    @keyframes twinkle { 0%, 100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.25); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes ribbon-flow { to { background-position: 100% 0; } }
+    @keyframes hero-enter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    ::selection { background: #d7dfd0; color: var(--ink); }
+
+    .announcement { padding: 10px 20px; background: linear-gradient(90deg, #47345f, #57364f, #344c65, #47345f); background-size: 240% 100%; color: #f9f3ff; text-align: center; font-size: 10px; letter-spacing: .17em; text-transform: uppercase; animation: ribbon-flow 12s linear infinite alternate; }
+    .announcement span { color: #f2cc94; }
+    .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--line); background: rgba(17, 19, 33, .84); backdrop-filter: blur(18px); }
+    .nav-wrap { width: min(1240px, calc(100% - 64px)); height: 76px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 23px; letter-spacing: .17em; }
+    .brand-mark { color: var(--green); font-size: 27px; line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 36px; color: #d0c7d6; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links a, .footer-links a { transition: color .2s ease; }
+    .nav-links a:hover, .footer-links a:hover { color: #a17a39; }
+    .nav-action { display: flex; align-items: center; gap: 13px; }
+    .shortlist-button, .menu-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 99px; background: transparent; cursor: pointer; }
+    .shortlist-button { min-height: 40px; padding: 0 15px; font-size: 11px; letter-spacing: .08em; }
+    .shortlist-count { display: grid; width: 19px; height: 19px; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 10px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; }
+
+    main { overflow: hidden; }
+    .hero { position: relative; display: grid; grid-template-columns: 1fr .92fr; min-height: 570px; width: min(1400px, calc(100% - 64px)); margin: 28px auto 0; overflow: hidden; border: 1px solid rgba(234, 216, 250, .16); border-radius: 12px; background: linear-gradient(135deg, rgba(42, 39, 66, .96), rgba(35, 42, 64, .94) 58%, rgba(39, 35, 57, .96)); color: #fff8ff; box-shadow: 0 28px 90px rgba(5, 7, 18, .45), inset 0 1px rgba(255,255,255,.08); }
+    .hero::before { position: absolute; top: -210px; left: 34%; width: 620px; height: 620px; border: 1px solid rgba(219, 183, 255, .18); border-radius: 50%; box-shadow: 0 0 0 35px rgba(219, 183, 255, .035), 0 0 0 75px rgba(219, 183, 255, .025); content: ""; animation: pulse-glow 9s ease-in-out infinite; pointer-events: none; }
+    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 68px 5vw 68px max(58px, calc((100vw - 1240px) / 2)); }
+    .hero-copy > * { animation: hero-enter .65s both; }
+    .hero-copy > :nth-child(2) { animation-delay: .08s; }
+    .hero-copy > :nth-child(3) { animation-delay: .16s; }
+    .hero-copy > :nth-child(4) { animation-delay: .24s; }
+    .hero-copy > :nth-child(5) { animation-delay: .32s; }
+    .hero-copy > :nth-child(6) { animation-delay: .4s; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 23px; color: #dfc1f3; font-size: 10px; letter-spacing: .21em; text-transform: uppercase; }
+    .eyebrow::before { width: 26px; height: 1px; background: currentColor; content: ""; }
+    .hero h1 { max-width: 520px; margin: 0; font-family: var(--serif); font-size: clamp(48px, 6.3vw, 82px); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .hero h1 em { color: #efc896; font-weight: 400; text-shadow: 0 0 40px rgba(239, 200, 150, .17); }
+    .hero-description { max-width: 365px; margin: 22px 0 29px; color: rgba(247, 245, 237, .72); font-size: 13px; line-height: 1.9; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 16px; padding: 0 21px; border: 1px solid transparent; cursor: pointer; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-light { align-self: flex-start; background: #f5edf7; color: #252033; }
+    .button-light:hover { background: #dfc9ec; }
+    .arrow { font-size: 17px; line-height: .7; }
+    .hero-footnote { margin: 38px 0 0; color: rgba(247, 245, 237, .53); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 22px; }
+    .hero-picker-label { width: 100%; margin-bottom: 2px; color: rgba(255, 248, 244, .58); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-scent { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid rgba(255, 248, 244, .28); border-radius: 40px; background: transparent; color: rgba(255, 248, 244, .8); cursor: pointer; font-size: 9px; transition: background .2s, border-color .2s, color .2s; }
+    .hero-scent:hover, .hero-scent[aria-pressed="true"] { border-color: #f0d7c2; background: rgba(255, 248, 244, .12); color: white; }
+    .scent-dot { width: 8px; height: 8px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; }
+    .scent-dot.noir { background: #242126; }
+    .scent-dot.verde { background: #436146; }
+    .scent-dot.rose { background: #d9889b; }
+    .scent-dot.soleil { background: #d8ad45; }
+    .hero-image-wrap { position: relative; display: grid; min-height: 430px; place-items: center; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 52% 49%, rgba(138, 103, 177, .21), transparent 58%); }
+    .hero-image-wrap::before { position: absolute; z-index: -1; width: min(74%, 360px); aspect-ratio: 1; border: 1px solid rgba(235, 218, 247, .17); border-radius: 50%; box-shadow: 0 0 55px rgba(160, 115, 208, .11), inset 0 0 60px rgba(160, 115, 208, .08); content: ""; animation: pulse-glow 7s ease-in-out infinite; }
+    .hero-image-wrap::after { position: absolute; inset: 0; background: radial-gradient(circle at 21% 22%, #eed9ff 0 1px, transparent 2px), radial-gradient(circle at 72% 18%, #e6c5ff 0 1px, transparent 2px), radial-gradient(circle at 78% 68%, #ead1ff 0 1px, transparent 2px), radial-gradient(circle at 17% 73%, #d9c1ff 0 1px, transparent 2px), radial-gradient(circle at 48% 12%, #f5d8aa 0 1px, transparent 2px); opacity: .58; content: ""; animation: twinkle 4s ease-in-out infinite alternate; pointer-events: none; }
+    .hero-gallery { position: relative; display: grid; width: min(100%, 500px); min-height: 420px; place-items: center; }
+    .photo-card { position: absolute; width: 116px; height: 145px; overflow: hidden; padding: 6px; border: 1px solid rgba(255,255,255,.23); border-radius: 4px; background: rgba(248, 243, 246, .94); box-shadow: 0 14px 38px rgba(5, 5, 16, .4); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+    .photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+    .photo-card-main { z-index: 2; width: 148px; height: 190px; animation: float-slow 6s ease-in-out infinite; }
+    .photo-card-left { z-index: 1; margin: 68px 0 0 -194px; transform: rotate(-12deg); animation: float-high 7s ease-in-out infinite; }
+    .photo-card-right { z-index: 1; margin: -56px 0 0 192px; transform: rotate(11deg); animation: float-slow 7.5s ease-in-out infinite reverse; }
+    .hero-gallery:hover .photo-card-main { transform: translateY(-7px) rotate(2deg) scale(1.05); box-shadow: 0 20px 52px rgba(5, 5, 16, .55); }
+    .hero-gallery:hover .photo-card-left { transform: translate(-9px, -6px) rotate(-17deg); }
+    .hero-gallery:hover .photo-card-right { transform: translate(9px, -4px) rotate(16deg); }
+    .hero-image-label { position: absolute; z-index: 3; right: 25px; bottom: 18px; color: #eadcf2; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-seal { position: absolute; z-index: 3; top: 16%; right: 12%; display: grid; width: 59px; height: 59px; place-items: center; border: 1px solid rgba(234, 200, 150, .56); border-radius: 50%; color: #efcc9e; font-family: var(--serif); font-size: 22px; animation: float-high 6s ease-in-out infinite; }
+
+    .ticker { display: flex; min-height: 66px; align-items: center; overflow: hidden; border-bottom: 1px solid var(--line); background: linear-gradient(90deg, transparent, rgba(90, 73, 114, .19), transparent); color: #d1c3d8; font-size: 9px; letter-spacing: .17em; text-transform: uppercase; }
+    .ticker-track { display: flex; width: max-content; align-items: center; gap: clamp(20px, 5vw, 70px); animation: marquee 28s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker span { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; }
+    .ticker span::before { color: var(--gold); content: "✳"; font-size: 13px; }
+    .section { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .collection { padding: 106px 0 110px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 35px; }
+    .section-kicker { margin: 0 0 12px; color: #d3abdf; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; }
+    .section-heading h2, .story-copy h2 { margin: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 58px); font-weight: 400; letter-spacing: -.04em; line-height: 1.12; }
+    .section-intro { max-width: 310px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .scent-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .scent-card { min-width: 0; padding: 13px; border: 1px solid transparent; border-radius: 8px; background: rgba(30, 30, 47, .38); transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)); transition: border-color .3s, background .3s, transform .2s ease-out, box-shadow .3s; }
+    .scent-card:hover { border-color: rgba(226, 192, 141, .24); background: rgba(44, 40, 64, .66); box-shadow: 0 18px 50px rgba(0, 0, 0, .23); }
+    .scent-photo { position: relative; height: clamp(98px, 10vw, 128px); overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: #252337; }
+    .scent-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .scent-card:hover .scent-photo img { transform: scale(1.045); }
+    .scent-card:nth-child(1) .scent-photo img { object-position: center 43%; }
+    .scent-card:nth-child(2) .scent-photo img { object-position: 58% 43%; }
+    .scent-card:nth-child(3) .scent-photo img { object-position: 61% 38%; }
+    .scent-card:nth-child(4) .scent-photo img { object-position: 75% 47%; }
+    .save-button { position: absolute; top: 8px; right: 8px; display: grid; width: 31px; height: 31px; place-items: center; border: 0; border-radius: 50%; background: rgba(22, 22, 36, .82); color: white; cursor: pointer; font-size: 17px; transition: transform .2s, background .2s; backdrop-filter: blur(8px); }
+    .save-button:hover { transform: scale(1.08); }
+    .save-button[aria-pressed="true"] { background: var(--green); color: white; }
+    .card-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .scent-card h3 { margin: 7px 0 6px; font-family: var(--serif); font-size: 24px; font-weight: 400; }
+    .scent-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .discover-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 0 0 4px; border: 0; border-bottom: 1px solid rgba(226, 192, 141, .5); background: transparent; color: #f1d29e; cursor: pointer; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; transition: gap .2s; }
+    .discover-link:hover { gap: 13px; }
+
+    .story { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; min-height: 390px; overflow: hidden; border-block: 1px solid var(--line); background: linear-gradient(110deg, rgba(56, 46, 76, .9), rgba(29, 43, 59, .92)); }
+    .story-image { position: relative; display: grid; min-height: 310px; place-items: center; overflow: hidden; background: radial-gradient(ellipse, rgba(118, 94, 153, .21), transparent 64%); }
+    .story-image img { display: block; width: 116px; height: 146px; object-fit: cover; border: 6px solid #f4eff1; border-radius: 4px; box-shadow: 0 18px 48px rgba(0,0,0,.4); transform: rotate(-5deg); animation: float-slow 6.5s ease-in-out infinite; }
+    .story-image::before, .story-image::after { position: absolute; width: 94px; height: 120px; border: 5px solid #f4eff1; border-radius: 3px; background-size: cover; background-position: center; box-shadow: 0 14px 35px rgba(0,0,0,.32); content: ""; }
+    .story-image::before { margin: 38px 0 0 -135px; background-image: url("assets/veltro-noir.jpeg"); transform: rotate(-16deg); animation: float-high 7s ease-in-out infinite; }
+    .story-image::after { margin: -39px 0 0 132px; background-image: url("assets/veltro-travel.jpeg"); transform: rotate(13deg); animation: float-high 7.5s ease-in-out infinite reverse; }
+    .story-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 55px clamp(32px, 7vw, 105px); }
+    .story-copy h2 { font-size: clamp(36px, 4.5vw, 52px); }
+    .story-copy > p:not(.section-kicker) { max-width: 390px; margin: 19px 0 25px; color: #c5bacb; font-size: 12px; line-height: 2; }
+    .button-outline { border-color: var(--ink); background: transparent; }
+    .button-outline:hover { background: var(--ink); color: white; }
+
+    .mood-match { position: relative; margin: 100px auto; padding: clamp(27px, 5vw, 58px); overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: linear-gradient(140deg, rgba(46, 41, 66, .82), rgba(34, 44, 59, .88) 64%, rgba(47, 40, 57, .83)); }
+    .mood-match::after { position: absolute; top: -70px; right: -55px; width: 205px; height: 205px; border: 1px solid rgba(226, 192, 141, .14); border-radius: 50%; box-shadow: 0 0 0 20px rgba(226, 192, 141, .025), 0 0 0 45px rgba(226, 192, 141, .02); content: ""; animation: pulse-glow 8s ease-in-out infinite; pointer-events: none; }
+    .mood-header { display: flex; align-items: end; justify-content: space-between; gap: 26px; margin-bottom: 26px; }
+    .mood-header .section-kicker { margin-bottom: 10px; }
+    .mood-header h2 { margin: 0; font-family: var(--serif); font-size: clamp(31px, 4vw, 48px); font-weight: 400; letter-spacing: -.035em; }
+    .mood-caption { position: relative; z-index: 1; max-width: 245px; margin: 0 0 4px; color: var(--muted); font-size: 11px; line-height: 1.8; }
+    .mood-choices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .mood-choice { position: relative; z-index: 1; min-height: 115px; padding: 16px; border: 1px solid rgba(235, 224, 244, .15); border-radius: 5px; background: rgba(19, 20, 35, .44); color: var(--ink); cursor: pointer; text-align: left; transition: transform .25s, border-color .25s, background .25s, box-shadow .25s; }
+    .mood-choice:hover { transform: translateY(-3px); border-color: rgba(99, 61, 74, .4); }
+    .mood-choice[aria-pressed="true"] { border-color: var(--gold); background: rgba(119, 82, 140, .3); box-shadow: 0 8px 30px rgba(147, 106, 185, .15); }
+    .mood-symbol { display: block; margin-bottom: 16px; color: var(--gold); font-family: var(--serif); font-size: 21px; }
+    .mood-choice strong { display: block; font-size: 11px; font-weight: 600; }
+    .mood-choice small { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.5; }
+    .match-result { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 21px; padding: 20px 21px; border: 1px solid rgba(235, 224, 244, .15); border-radius: 5px; background: rgba(17, 19, 33, .6); animation: result-arrive .45s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes result-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .match-result[hidden] { display: none; }
+    .match-result p { margin: 0 0 5px; color: var(--gold); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+    .match-result h3 { margin: 0; font-family: var(--serif); font-size: 25px; font-weight: 400; }
+    .match-result .match-description { max-width: 440px; margin: 5px 0 0; color: var(--muted); font-size: 11px; letter-spacing: 0; line-height: 1.7; text-transform: none; }
+    .button-dark { background: var(--green); color: white; white-space: nowrap; }
+    .button-dark:hover { background: #172b22; }
+
+    .site-footer { padding: 40px 0 25px; background: #090b14; color: #f5eff7; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .footer-brand .brand-mark { color: #d8c49c; }
+    .footer-note { margin: 9px 0 0; color: rgba(246, 244, 237, .56); font-size: 10px; letter-spacing: .07em; }
+    .footer-links { display: flex; gap: 24px; color: rgba(246, 244, 237, .76); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .copyright { margin: 28px 0 0; padding-top: 18px; border-top: 1px solid rgba(246, 244, 237, .14); color: rgba(246, 244, 237, .45); font-size: 9px; letter-spacing: .06em; }
+
+    .drawer-backdrop { position: fixed; z-index: 39; inset: 0; visibility: hidden; background: rgba(16, 20, 16, .42); opacity: 0; transition: opacity .25s, visibility .25s; }
+    .drawer-backdrop.open { visibility: visible; opacity: 1; }
+    .drawer { position: fixed; z-index: 40; top: 0; right: 0; display: flex; width: min(390px, 90vw); height: 100dvh; flex-direction: column; padding: 27px; background: #181827; color: var(--ink); transform: translateX(102%); transition: transform .3s ease; }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 19px; border-bottom: 1px solid var(--line); }
+    .drawer-head h2 { margin: 0; font-family: var(--serif); font-size: 29px; font-weight: 400; }
+    .close-drawer { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; font-size: 19px; }
+    .drawer-items { flex: 1; overflow: auto; }
+    .drawer-empty { margin-top: 35px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .drawer-item { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .drawer-item img { width: 68px; height: 76px; object-fit: cover; }
+    .drawer-item strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 400; }
+    .drawer-item span { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .drawer-foot { padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.7; }
+    .toast { position: fixed; z-index: 50; bottom: 22px; left: 50%; max-width: calc(100% - 32px); padding: 13px 19px; border: 1px solid rgba(226, 192, 141, .3); border-radius: 3px; background: #312641; color: white; font-size: 11px; letter-spacing: .04em; opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s, transform .2s; }
+    .toast.visible { opacity: 1; transform: translate(-50%, 0); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    body.drawer-open { overflow: hidden; }
+    #scroll-progress { position: fixed; z-index: 60; top: 0; left: 0; width: 0%; height: 2px; background: linear-gradient(90deg, #b998e8, #efc896, #e28ea7); box-shadow: 0 0 12px rgba(204, 165, 232, .65); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 760px) {
+      .nav-wrap, .section { width: calc(100% - 38px); }
+      .nav-wrap { height: 65px; }
+      .nav-links { position: absolute; top: 65px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 17px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 14px 0; border-top: 1px solid var(--line); }
+      .menu-toggle { display: inline-flex; }
+      .shortlist-button { min-height: 38px; padding: 0 11px; }
+      .hero { grid-template-columns: 1fr; width: calc(100% - 24px); margin-top: 12px; }
+      .hero-copy { padding: 50px 28px 38px; }
+      .hero h1 { max-width: 480px; font-size: clamp(51px, 12vw, 75px); }
+      .hero-description { margin: 17px 0 23px; }
+      .hero-footnote { margin-top: 25px; }
+      .hero-image-wrap { min-height: 245px; }
+      .hero-gallery { min-height: 260px; }
+      .photo-card { width: 88px; height: 112px; padding: 5px; }
+      .photo-card-main { width: 110px; height: 142px; }
+      .photo-card-left { margin: 45px 0 0 -136px; }
+      .photo-card-right { margin: -43px 0 0 136px; }
+      .hero-seal { top: 8%; right: 10%; width: 46px; height: 46px; font-size: 18px; }
+      .hero-image-label { right: 15px; bottom: 12px; }
+      .ticker { min-height: 58px; gap: 15px; overflow: hidden; white-space: nowrap; font-size: 8px; }
+      .ticker span { gap: 7px; }
+      .collection { padding: 76px 0 78px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 14px; margin-bottom: 25px; }
+      .section-intro { max-width: 400px; }
+      .scent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 13px; }
+      .scent-photo { height: 96px; }
+      .scent-card { padding: 10px; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 245px; }
+      .story-image img { min-height: 0; }
+      .story-copy { padding: 42px 25px 49px; }
+      .mood-match { margin: 70px auto; padding: 31px 23px; }
+      .mood-header { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .mood-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+      .mood-choice { min-height: 112px; padding: 13px; }
+      .match-result { align-items: flex-start; flex-direction: column; gap: 17px; padding: 17px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+    @media (max-width: 380px) {
+      .announcement { font-size: 8px; }
+      .brand { font-size: 20px; }
+      .shortlist-button { gap: 6px; font-size: 9px; }
+      .scent-grid { gap: 25px 10px; }
+      .scent-card h3 { font-size: 21px; }
+      .card-meta { font-size: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress" aria-hidden="true"></div>
+  <div class="announcement">A little scent, a lot of presence <span>✳</span> made to be remembered</div>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="Veltro home"><span class="brand-mark" aria-hidden="true">✳</span> VELTRO</a>
+      <nav class="nav-links" id="site-navigation" aria-label="Main navigation">
+        <a href="#collection">The collection</a>
+        <a href="#story">Our story</a>
+        <a href="#find-your-scent">Find your scent</a>
+      </nav>
+      <div class="nav-action">
+        <button class="shortlist-button" id="open-shortlist" type="button" aria-label="Open your scent shortlist">
+          <span>My scents</span><span class="shortlist-count" id="shortlist-count" aria-live="polite">0</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="site-navigation" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-eyebrow">A signature in every spritz</p>
+        <h1 id="hero-title">Make your<br>presence <em>linger.</em></h1>
+        <p class="hero-description" id="hero-description">Not just a fragrance. The finishing touch that says everything before you do. Meet the VELTRO eau de parfum collection.</p>
+        <a class="button button-light" href="#collection">Find your fragrance <span class="arrow" aria-hidden="true">↗</span></a>
+        <p class="hero-footnote">Made for the moments that become memories</p>
+        <div class="hero-picker" role="group" aria-label="Choose a VELTRO fragrance">
+          <span class="hero-picker-label">Find your feeling · Choose a scent</span>
+          <button class="hero-scent" type="button" data-select="noir" aria-pressed="true"><span class="scent-dot noir" aria-hidden="true"></span>Noir</button>
+          <button class="hero-scent" type="button" data-select="verde" aria-pressed="false"><span class="scent-dot verde" aria-hidden="true"></span>Verde</button>
+          <button class="hero-scent" type="button" data-select="rose" aria-pressed="false"><span class="scent-dot rose" aria-hidden="true"></span>Rosé</button>
+          <button class="hero-scent" type="button" data-select="soleil" aria-pressed="false"><span class="scent-dot soleil" aria-hidden="true"></span>Soleil</button>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-gallery" aria-label="A glimpse of the VELTRO fragrance collection">
+          <div class="photo-card photo-card-left"><img src="assets/veltro-noir.jpeg" alt="" loading="eager"></div>
+          <div class="photo-card photo-card-main"><img class="hero-image" id="hero-image" src="assets/veltro-noir.jpeg" alt="VELTRO Noir perfume in a deep, dark bottle" fetchpriority="high"></div>
+          <div class="photo-card photo-card-right"><img src="assets/veltro-travel.jpeg" alt="" loading="eager"></div>
+          <span class="hero-seal" aria-hidden="true">V.</span>
+        </div>
+        <span class="hero-image-label" id="hero-image-label">The original · Noir</span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="VELTRO fragrance collection">
+      <div class="ticker-track">
+        <span>For a bolder you</span><span>Wear your presence</span><span>A scent that stays</span>
+        <span aria-hidden="true">For a bolder you</span><span aria-hidden="true">Wear your presence</span><span aria-hidden="true">A scent that stays</span>
+      </div>
+    </div>
+
+    <section class="section collection" id="collection" aria-labelledby="collection-heading">
+      <div class="section-heading reveal">
+        <div>
+          <p class="section-kicker">The VELTRO collection</p>
+          <h2 id="collection-heading">Find your kind of bold.</h2>
+        </div>
+        <p class="section-intro">Four expressions. One unmistakable spirit. Choose the bottle that feels like your next chapter.</p>
+      </div>
+      <div class="scent-grid">
+        <article class="scent-card reveal">
+          <div class="scent-photo">
+            <img src="assets/veltro-noir.jpeg" alt="VELTRO perfume in a deep, dark bottle" loading="lazy">
+            <button class="save-button" type="button" aria-label="Add Noir to my scents" aria-pressed="false" data-scent="Noir" data-image="assets/veltro-noir.jpeg">♡</button>
+          </div>
+          <div class="card-meta"><span>01 · The original</span><span>Eau de parfum</span></div>
+          <h3>Noir</h3><p>Quiet confidence. A little mystery. A lot of presence.</p>
+          <button class="discover-link" type="button" data-select="noir">Discover Noir <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="scent-card reveal">
+          <div class="scent-photo">
+            <img src="assets/veltro-duo.jpeg" alt="VELTRO perfume bottles, including the signature green bottle" loading="lazy">
+            <button class="save-button" type="button" aria-label="Add Verde to my scents" aria-pressed="false" data-scent="Verde" data-image="assets/veltro-duo.jpeg">♡</button>
+          </div>
+          <div class="card-meta"><span>02 · The untamed</span><span>Eau de parfum</span></div>
+          <h3>Verde</h3><p>For the ones who find their own way—and own it.</p>
+          <button class="discover-link" type="button" data-select="verde">Discover Verde <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="scent-card reveal">
+          <div class="scent-photo">
+            <img src="assets/veltro-story.jpeg" alt="VELTRO’s rose-coloured perfume bottle in the collection" loading="lazy">
+            <button class="save-button" type="button" aria-label="Add Rosé to my scents" aria-pressed="false" data-scent="Rosé" data-image="assets/veltro-story.jpeg">♡</button>
+          </div>
+          <div class="card-meta"><span>03 · The unexpected</span><span>Eau de parfum</span></div>
+          <h3>Rosé</h3><p>Soft around the edges. Never someone to follow.</p>
+          <button class="discover-link" type="button" data-select="rose">Discover Rosé <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="scent-card reveal">
+          <div class="scent-photo">
+            <img src="assets/veltro-travel.jpeg" alt="VELTRO’s perfume and travel spray bottles" loading="lazy">
+            <button class="save-button" type="button" aria-label="Add Soleil to my scents" aria-pressed="false" data-scent="Soleil" data-image="assets/veltro-travel.jpeg">♡</button>
+          </div>
+          <div class="card-meta"><span>04 · The bright one</span><span>Eau de parfum</span></div>
+          <h3>Soleil</h3><p>Bring a little golden-hour energy to every day.</p>
+          <button class="discover-link" type="button" data-select="soleil">Discover Soleil <span aria-hidden="true">↗</span></button>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="story" aria-labelledby="story-heading">
+      <div class="story-image" role="img" aria-label="A small floating collage of VELTRO perfume bottles">
+        <img src="assets/veltro-duo.jpeg" alt="" loading="lazy">
+      </div>
+      <div class="story-copy reveal">
+        <p class="section-kicker">A bolder point of view</p>
+        <h2 id="story-heading">Be the feeling<br>they remember.</h2>
+        <p>Some things don't need to announce themselves. They just stay with you. VELTRO is for showing up as yourself, taking up space, and leaving a little something behind.</p>
+        <a class="button button-outline" href="#find-your-scent">Get to know us <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="section mood-match reveal" id="find-your-scent" aria-labelledby="finder-heading">
+      <div class="mood-header">
+        <div>
+          <p class="section-kicker">A little moodboard, a little magic</p>
+          <h2 id="finder-heading">How do you want to feel?</h2>
+        </div>
+        <p class="mood-caption">Pick the mood that feels like you. We’ll introduce you to your VELTRO.</p>
+      </div>
+      <div class="mood-choices" role="group" aria-label="Choose a fragrance mood">
+        <button class="mood-choice" type="button" data-mood="magnetic" aria-pressed="false">
+          <span class="mood-symbol" aria-hidden="true">✷</span><strong>Bold &amp; magnetic</strong><small>Make an entrance</small>
+        </button>
+        <button class="mood-choice" type="button" data-mood="untamed" aria-pressed="false">
+          <span class="mood-symbol" aria-hidden="true">⌁</span><strong>Free &amp; untamed</strong><small>Follow your own way</small>
+        </button>
+        <button class="mood-choice" type="button" data-mood="playful" aria-pressed="false">
+          <span class="mood-symbol" aria-hidden="true">♡</span><strong>Playful &amp; romantic</strong><small>Keep a little mystery</small>
+        </button>
+        <button class="mood-choice" type="button" data-mood="radiant" aria-pressed="false">
+          <span class="mood-symbol" aria-hidden="true">☼</span><strong>Bright &amp; radiant</strong><small>Find your own glow</small>
+        </button>
+      </div>
+      <div class="match-result" id="match-result" aria-live="polite" hidden>
+        <div><p>Your VELTRO match</p><h3 id="match-name"></h3><p class="match-description" id="match-description"></p></div>
+        <button class="button button-dark" id="match-button" type="button">Meet your scent <span class="arrow" aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section">
+      <div class="footer-inner">
+        <div>
+          <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">✳</span> VELTRO</a>
+          <p class="footer-note">Eau de parfum. For a bolder you.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#collection">The collection</a><a href="#story">Our story</a><a href="#home">Back to top ↑</a>
+        </nav>
+      </div>
+      <p class="copyright">© <span id="copyright-year"></span> VELTRO. Wear your presence.</p>
+    </div>
+  </footer>
+
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="drawer" id="shortlist-drawer" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="drawer-head"><h2 id="drawer-title">Your scent edit</h2><button class="close-drawer" id="close-drawer" type="button" aria-label="Close shortlist">×</button></div>
+    <div class="drawer-items" id="drawer-items" aria-live="polite"></div>
+    <p class="drawer-foot">Keep exploring until you find the one that feels unmistakably yours.</p>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const scents = {
+        noir: { name: "Noir", image: "assets/veltro-noir.jpeg", alt: "VELTRO perfume in a deep, dark bottle", label: "The original · Noir", eyebrow: "A signature in every spritz", title: 'Make your<br>presence <em>linger.</em>', description: "Not just a fragrance. The finishing touch that says everything before you do. Meet the VELTRO eau de parfum collection." },
+        verde: { name: "Verde", image: "assets/veltro-duo.jpeg", alt: "VELTRO's signature green Eau de Parfum bottle", label: "The untamed · Verde", eyebrow: "For the beautifully untamed", title: 'Own your<br><em>own way.</em>', description: "For the ones who take the scenic route, trust their instincts, and leave the world a little more interesting." },
+        rose: { name: "Rosé", image: "assets/veltro-story.jpeg", alt: "VELTRO's rose-coloured perfume bottle", label: "The unexpected · Rosé", eyebrow: "Softness with a little edge", title: 'Never just<br><em>one thing.</em>', description: "A softer side with a point of view. Meet the VELTRO that keeps a little mystery in the air." },
+        soleil: { name: "Soleil", image: "assets/veltro-travel.jpeg", alt: "VELTRO golden perfume and travel spray bottles", label: "The bright one · Soleil", eyebrow: "A little golden-hour energy", title: 'Bring your<br><em>own glow.</em>', description: "A bright little reminder to make the everyday feel like something worth remembering." }
+      };
+      const saved = new Map();
+      const heroImage = document.getElementById("hero-image");
+      const drawer = document.getElementById("shortlist-drawer");
+      const backdrop = document.getElementById("drawer-backdrop");
+      const toast = document.getElementById("toast");
+      let toastTimer;
+
+      document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+      function announce(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("visible"), 2600);
+      }
+
+      function selectScent(key) {
+        const scent = scents[key];
+        if (!scent) return;
+        heroImage.src = scent.image;
+        heroImage.alt = scent.alt;
+        document.getElementById("hero-image-label").textContent = scent.label;
+        document.getElementById("hero-eyebrow").textContent = scent.eyebrow;
+        document.getElementById("hero-title").innerHTML = scent.title;
+        document.getElementById("hero-description").textContent = scent.description;
+        document.querySelectorAll(".hero-scent").forEach(button => {
+          button.setAttribute("aria-pressed", String(button.dataset.select === key));
+        });
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          heroImage.getAnimations().forEach(animation => animation.cancel());
+          heroImage.animate(
+            [{ opacity: .55, transform: "scale(1.025)" }, { opacity: 1, transform: "scale(1)" }],
+            { duration: 420, easing: "ease-out" }
+          );
+        }
+      }
+
+      function renderShortlist() {
+        const count = saved.size;
+        document.getElementById("shortlist-count").textContent = count;
+        const items = document.getElementById("drawer-items");
+        items.replaceChildren();
+        if (count === 0) {
+          const empty = document.createElement("p");
+          empty.className = "drawer-empty";
+          empty.textContent = "Your shortlist is waiting for its first signature scent. Tap the heart on any bottle to save it here.";
+          items.append(empty);
+          return;
+        }
+        saved.forEach((scent, name) => {
+          const item = document.createElement("div");
+          item.className = "drawer-item";
+          const image = document.createElement("img");
+          image.src = scent.image;
+          image.alt = "";
+          const info = document.createElement("div");
+          const title = document.createElement("strong");
+          title.textContent = name;
+          const caption = document.createElement("span");
+          caption.textContent = "Eau de parfum";
+          info.append(title, caption);
+          item.append(image, info);
+          items.append(item);
+        });
+      }
+
+      function setDrawer(open) {
+        drawer.classList.toggle("open", open);
+        backdrop.classList.toggle("open", open);
+        drawer.setAttribute("aria-hidden", String(!open));
+        document.body.classList.toggle("drawer-open", open);
+        if (open) document.getElementById("close-drawer").focus();
+        else document.getElementById("open-shortlist").focus();
+      }
+
+      document.querySelectorAll(".save-button").forEach(button => {
+        button.addEventListener("click", () => {
+          const name = button.dataset.scent;
+          if (saved.has(name)) {
+            saved.delete(name);
+            button.setAttribute("aria-pressed", "false");
+            button.textContent = "♡";
+            announce(`${name} removed from your scents.`);
+          } else {
+            saved.set(name, { image: button.dataset.image });
+            button.setAttribute("aria-pressed", "true");
+            button.textContent = "♥";
+            announce(`${name} added to your scents.`);
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              button.animate(
+                [{ transform: "scale(1)" }, { transform: "scale(1.38)" }, { transform: "scale(1)" }],
+                { duration: 360, easing: "cubic-bezier(.2,.8,.2,1)" }
+              );
+            }
+          }
+          renderShortlist();
+        });
+      });
+
+      document.querySelectorAll("[data-select]").forEach(button => {
+        button.addEventListener("click", () => {
+          selectScent(button.dataset.select);
+          if (button.classList.contains("discover-link")) {
+            document.getElementById("home").scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      const moodMatches = { magnetic: "noir", untamed: "verde", playful: "rose", radiant: "soleil" };
+      const matchResult = document.getElementById("match-result");
+      const matchButton = document.getElementById("match-button");
+      document.querySelectorAll("[data-mood]").forEach(button => {
+        button.addEventListener("click", () => {
+          const scentKey = moodMatches[button.dataset.mood];
+          const scent = scents[scentKey];
+          if (!scent) return;
+          document.querySelectorAll("[data-mood]").forEach(option => {
+            option.setAttribute("aria-pressed", String(option === button));
+          });
+          document.getElementById("match-name").textContent = scent.name;
+          document.getElementById("match-description").textContent = scent.description;
+          matchButton.dataset.scentKey = scentKey;
+          matchResult.hidden = false;
+        });
+      });
+      matchButton.addEventListener("click", () => {
+        selectScent(matchButton.dataset.scentKey);
+        document.getElementById("home").scrollIntoView({ behavior: "smooth" });
+      });
+
+      document.getElementById("open-shortlist").addEventListener("click", () => setDrawer(true));
+      document.getElementById("close-drawer").addEventListener("click", () => setDrawer(false));
+      backdrop.addEventListener("click", () => setDrawer(false));
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && drawer.classList.contains("open")) setDrawer(false);
+      });
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const navigation = document.getElementById("site-navigation");
+      menuToggle.addEventListener("click", () => {
+        const open = menuToggle.getAttribute("aria-expanded") !== "true";
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        navigation.classList.toggle("open", open);
+      });
+      navigation.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navigation.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+        });
+      });
+
+      if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const siblings = [...entry.target.parentElement.children];
+            const index = siblings.indexOf(entry.target);
+            entry.target.style.transitionDelay = `${Math.min(index * 75, 350)}ms`;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: .12 });
+        document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+      } else {
+        document.querySelectorAll(".reveal").forEach(element => element.classList.add("is-visible"));
+      }
+
+      let motionFrame = 0;
+      if (window.matchMedia("(pointer: fine)").matches && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.addEventListener("pointermove", event => {
+          if (motionFrame) return;
+          motionFrame = window.requestAnimationFrame(() => {
+            document.body.style.setProperty("--pointer-x", `${event.clientX}px`);
+            document.body.style.setProperty("--pointer-y", `${event.clientY}px`);
+            motionFrame = 0;
+          });
+        }, { passive: true });
+
+        document.querySelectorAll(".scent-card").forEach(card => {
+          card.addEventListener("pointermove", event => {
+            const bounds = card.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - .5;
+            const y = (event.clientY - bounds.top) / bounds.height - .5;
+            card.style.setProperty("--tilt-x", `${x * 4}deg`);
+            card.style.setProperty("--tilt-y", `${y * -4}deg`);
+          });
+          card.addEventListener("pointerleave", () => {
+            card.style.setProperty("--tilt-x", "0deg");
+            card.style.setProperty("--tilt-y", "0deg");
+          });
+        });
+      }
+
+      let scrollFrame = 0;
+      window.addEventListener("scroll", () => {
+        if (scrollFrame) return;
+        scrollFrame = window.requestAnimationFrame(() => {
+          const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = scrollable > 0 ? window.scrollY / scrollable * 100 : 0;
+          document.getElementById("scroll-progress").style.width = `${progress}%`;
+          scrollFrame = 0;
+        });
+      }, { passive: true });
+
+      renderShortlist();
+    })();
+  </script>
+</body>
+</html>
